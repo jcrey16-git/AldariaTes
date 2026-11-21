@@ -1,0 +1,169 @@
+/* ===== Aldaria · tema medieval oscuro ===== */
+:root{
+  --carbon:#14110f;      /* fondo base */
+  --piedra:#1e1a16;      /* paneles */
+  --hierro:#3a332b;      /* bordes */
+  --oro:#b8923f;         /* acento principal */
+  --oro-claro:#d8b765;
+  --sangre:#8a2a2f;      /* acento secundario */
+  --hueso:#d9cdb4;       /* texto */
+  --ceniza:#9a8f7a;      /* texto secundario */
+  --titulo:'Cinzel','Trajan Pro','Times New Roman',serif;
+  --texto:'EB Garamond',Georgia,'Times New Roman',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--carbon);
+  background-image:radial-gradient(ellipse at top,#2a221b 0%,var(--carbon) 60%);
+  background-attachment:fixed;
+  color:var(--hueso);
+  font-family:var(--texto);
+  font-size:1.2rem;
+  line-height:1.7;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+}
+a{color:var(--oro-claro);text-decoration:none}
+a:hover,a:focus-visible{color:#fff;text-decoration:underline}
+:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+h1,h2,h3{font-family:var(--titulo);font-weight:700;color:var(--oro-claro);line-height:1.25;letter-spacing:.04em}
+h1{font-size:clamp(2rem,5vw,3.4rem);margin-bottom:.6rem}
+h2{font-size:1.8rem;margin-bottom:.8rem}
+h3{font-size:1.25rem;margin-bottom:.4rem}
+p{margin-bottom:1rem;max-width:68ch}
+
+/* Cabecera y navegación */
+.cabecera{background:#0e0c0a;border-bottom:3px double var(--hierro);position:sticky;top:0;z-index:10}
+.cabecera .interior{max-width:1100px;margin:0 auto;padding:.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.marca{font-family:var(--titulo);font-size:1.5rem;color:var(--oro);letter-spacing:.12em}
+.marca:hover{text-decoration:none;color:var(--oro-claro)}
+.menu-boton{display:none;background:none;border:1px solid var(--hierro);color:var(--oro-claro);font-family:var(--titulo);padding:.3rem .8rem;cursor:pointer}
+nav ul{list-style:none;display:flex;gap:.2rem;flex-wrap:wrap}
+nav a{display:block;padding:.35rem .8rem;font-family:var(--titulo);font-size:.95rem;color:var(--hueso);border-bottom:2px solid transparent}
+nav a:hover{text-decoration:none;color:var(--oro-claro);border-color:var(--oro)}
+nav a[aria-current="page"]{color:var(--oro-claro);border-color:var(--sangre)}
+
+/* Estructura */
+main{flex:1;width:100%;max-width:1100px;margin:0 auto;padding:2.5rem 1.2rem 4rem}
+.portada{text-align:center;padding:4rem 1rem 3rem;border:1px solid var(--hierro);border-top:4px solid var(--sangre);background:linear-gradient(180deg,#1a1512,var(--piedra));margin-bottom:3rem}
+.portada h1{font-size:clamp(2.6rem,8vw,5rem);color:var(--oro);text-shadow:0 2px 0 #000,0 0 30px rgba(184,146,63,.25)}
+.portada p{margin:0 auto 1.4rem;font-style:italic;color:var(--ceniza)}
+.cabecera-pagina{border-bottom:1px solid var(--hierro);margin-bottom:2rem;padding-bottom:1rem}
+.cabecera-pagina p{color:var(--ceniza);font-style:italic}
+.boton{display:inline-block;font-family:var(--titulo);padding:.6rem 1.6rem;border:1px solid var(--oro);color:var(--oro-claro);background:rgba(184,146,63,.08);letter-spacing:.08em}
+.boton:hover{background:var(--oro);color:var(--carbon);text-decoration:none}
+
+/* Rejilla de tarjetas */
+.rejilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.4rem}
+.tarjeta{background:var(--piedra);border:1px solid var(--hierro);border-left:4px solid var(--sangre);padding:1.3rem 1.4rem}
+.tarjeta:hover{border-left-color:var(--oro)}
+.tarjeta p{font-size:1.1rem;margin-bottom:.6rem}
+.tarjeta .dato{color:var(--ceniza);font-size:.98rem}
+.tarjeta .dato b{color:var(--oro);font-weight:600}
+.tarjeta-enlace{display:block;color:inherit}
+.tarjeta-enlace:hover{text-decoration:none}
+.tarjeta-enlace h3{color:var(--oro-claro)}
+
+/* Historia por eras */
+.era{margin-bottom:2.4rem;padding-left:1.4rem;border-left:2px solid var(--hierro)}
+.era h2{position:relative}
+.era h2::before{content:"";position:absolute;left:calc(-1.4rem - 7px);top:.55rem;width:12px;height:12px;background:var(--oro);transform:rotate(45deg)}
+
+/* Línea de tiempo */
+.linea{position:relative;margin:2rem 0;padding:0}
+.linea::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--hierro);transform:translateX(-50%)}
+.hito{position:relative;width:50%;padding:0 2.4rem 2.2rem 0;text-align:right}
+.hito:nth-child(even){margin-left:50%;padding:0 0 2.2rem 2.4rem;text-align:left}
+.hito::after{content:"";position:absolute;top:.5rem;right:-7px;width:14px;height:14px;background:var(--carbon);border:2px solid var(--oro);transform:rotate(45deg)}
+.hito:nth-child(even)::after{right:auto;left:-7px}
+.hito .anio{font-family:var(--titulo);color:var(--oro);font-size:1.3rem}
+.hito h3{font-size:1.1rem}
+.hito p{font-size:1.05rem;margin-left:auto}
+.hito:nth-child(even) p{margin-left:0}
+.hito.guerra::after{border-color:var(--sangre);background:var(--sangre)}
+
+/* Plantillas */
+pre{background:#0e0c0a;border:1px solid var(--hierro);padding:1rem;overflow-x:auto;font-size:.9rem;line-height:1.5;color:var(--hueso);margin-bottom:2rem;font-family:Consolas,'Courier New',monospace}
+
+/* Pie */
+.pie{background:#0e0c0a;border-top:3px double var(--hierro);text-align:center;padding:1.4rem 1rem;color:var(--ceniza);font-size:.95rem}
+
+/* Móvil */
+@media (max-width:760px){
+  .menu-boton{display:block}
+  nav{width:100%}
+  nav ul{display:none;flex-direction:column}
+  nav ul.abierto{display:flex}
+  .linea::before{left:10px}
+  .hito,.hito:nth-child(even){width:100%;margin-left:0;padding:0 0 2rem 2.2rem;text-align:left}
+  .hito::after,.hito:nth-child(even)::after{left:3px;right:auto}
+  .hito p,.hito:nth-child(even) p{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Autor */
+.autor{display:flex;gap:2rem;align-items:center;flex-wrap:wrap;background:var(--piedra);border:1px solid var(--hierro);border-top:4px solid var(--sangre);padding:2rem}
+.autor img{width:180px;height:180px;border-radius:50%;object-fit:cover;border:4px solid var(--oro);box-shadow:0 0 0 4px var(--carbon),0 0 0 6px var(--hierro)}
+.autor-texto{flex:1;min-width:240px}
+.autor-texto h2{margin-bottom:.2rem}
+.autor-texto .dato{color:var(--ceniza);font-style:italic}
+
+/* ===== Animaciones ===== */
+@keyframes aparecer{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes aparecer-izq{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+@keyframes aparecer-der{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes entrada-titulo{from{opacity:0;letter-spacing:.35em;filter:blur(6px)}to{opacity:1;letter-spacing:.04em;filter:none}}
+@keyframes antorcha{
+  0%,100%{text-shadow:0 2px 0 #000,0 0 26px rgba(184,146,63,.22)}
+  35%{text-shadow:0 2px 0 #000,0 0 40px rgba(216,183,101,.45)}
+  60%{text-shadow:0 2px 0 #000,0 0 30px rgba(184,146,63,.28)}
+  80%{text-shadow:0 2px 0 #000,0 0 44px rgba(216,183,101,.4)}
+}
+@keyframes latido-guerra{
+  0%,100%{box-shadow:0 0 0 0 rgba(138,42,47,.6)}
+  50%{box-shadow:0 0 0 9px rgba(138,42,47,0)}
+}
+@keyframes desplegar{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
+/* Portada: entrada en secuencia (único momento "grande") */
+.portada h1{animation:entrada-titulo 1.4s ease-out both, antorcha 5s ease-in-out 1.4s infinite}
+.portada p{animation:aparecer .9s ease-out .9s backwards}
+.portada .boton{animation:aparecer .9s ease-out 1.25s backwards}
+
+/* Aparición al hacer scroll (solo si hay JS) */
+.js .tarjeta:not(.visible),.js .era:not(.visible),.js .hito:not(.visible),
+.js .autor:not(.visible),.js .cabecera-pagina:not(.visible),.js pre:not(.visible){opacity:0}
+.visible{animation:aparecer .7s ease-out backwards;animation-delay:var(--d,0s)}
+.hito.visible{animation-name:aparecer-izq}
+.hito:nth-child(even).visible{animation-name:aparecer-der}
+
+/* Respuestas al ratón y al teclado */
+.tarjeta{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.tarjeta:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.5),0 0 0 1px rgba(184,146,63,.25)}
+nav a{transition:color .2s ease,border-color .2s ease}
+.boton{transition:background .25s ease,color .25s ease,box-shadow .25s ease}
+.boton:hover{box-shadow:0 0 18px rgba(184,146,63,.45)}
+.marca{transition:color .25s ease,text-shadow .25s ease}
+.marca:hover{text-shadow:0 0 14px rgba(216,183,101,.6)}
+.hito::after{transition:transform .3s ease,background .3s ease}
+.hito:hover::after{transform:rotate(45deg) scale(1.35);background:var(--oro)}
+.hito.guerra::after{animation:latido-guerra 2.6s ease-out infinite}
+.hito.guerra:hover::after{background:var(--sangre)}
+.era h2::before{transition:transform .4s ease}
+.era:hover h2::before{transform:rotate(225deg)}
+.autor img{transition:transform .5s ease,box-shadow .5s ease}
+.autor img:hover{transform:scale(1.05) rotate(-3deg);box-shadow:0 0 0 4px var(--carbon),0 0 0 6px var(--oro),0 0 28px rgba(184,146,63,.5)}
+nav ul.abierto{animation:desplegar .25s ease-out}
+
+/* En móvil la línea de tiempo entra desde abajo */
+@media (max-width:760px){
+  .hito.visible,.hito:nth-child(even).visible{animation-name:aparecer}
+}
+
+/* Sin movimiento si el sistema lo pide */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .js .tarjeta:not(.visible),.js .era:not(.visible),.js .hito:not(.visible),
+  .js .autor:not(.visible),.js .cabecera-pagina:not(.visible),.js pre:not(.visible){opacity:1}
+}
