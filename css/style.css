@@ -108,3 +108,66 @@ pre{background:#0e0c0a;border:1px solid var(--hierro);padding:1rem;overflow-x:au
 .autor-texto{flex:1;min-width:240px}
 .autor-texto h2{margin-bottom:.2rem}
 .autor-texto .dato{color:var(--ceniza);font-style:italic}
+
+/* ===== Animaciones ===== */
+@keyframes aparecer{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes aparecer-izq{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+@keyframes aparecer-der{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes entrada-titulo{from{opacity:0;letter-spacing:.35em;filter:blur(6px)}to{opacity:1;letter-spacing:.04em;filter:none}}
+@keyframes antorcha{
+  0%,100%{text-shadow:0 2px 0 #000,0 0 26px rgba(184,146,63,.22)}
+  35%{text-shadow:0 2px 0 #000,0 0 40px rgba(216,183,101,.45)}
+  60%{text-shadow:0 2px 0 #000,0 0 30px rgba(184,146,63,.28)}
+  80%{text-shadow:0 2px 0 #000,0 0 44px rgba(216,183,101,.4)}
+}
+@keyframes latido-guerra{
+  0%,100%{box-shadow:0 0 0 0 rgba(138,42,47,.6)}
+  50%{box-shadow:0 0 0 9px rgba(138,42,47,0)}
+}
+@keyframes desplegar{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
+/* Portada: entrada en secuencia (único momento "grande") */
+.portada h1{animation:entrada-titulo 1.4s ease-out both, antorcha 5s ease-in-out 1.4s infinite}
+.portada p{animation:aparecer .9s ease-out .9s backwards}
+.portada .boton{animation:aparecer .9s ease-out 1.25s backwards}
+
+/* Aparición al hacer scroll (solo si hay JS) */
+.js .tarjeta:not(.visible),.js .era:not(.visible),.js .hito:not(.visible),
+.js .autor:not(.visible),.js .cabecera-pagina:not(.visible),.js pre:not(.visible){opacity:0}
+.visible{animation:aparecer .7s ease-out backwards;animation-delay:var(--d,0s)}
+.hito.visible{animation-name:aparecer-izq}
+.hito:nth-child(even).visible{animation-name:aparecer-der}
+
+/* Respuestas al ratón y al teclado */
+.tarjeta{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.tarjeta:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.5),0 0 0 1px rgba(184,146,63,.25)}
+nav a{transition:color .2s ease,border-color .2s ease}
+.boton{transition:background .25s ease,color .25s ease,box-shadow .25s ease}
+.boton:hover{box-shadow:0 0 18px rgba(184,146,63,.45)}
+.marca{transition:color .25s ease,text-shadow .25s ease}
+.marca:hover{text-shadow:0 0 14px rgba(216,183,101,.6)}
+.hito::after{transition:transform .3s ease,background .3s ease}
+.hito:hover::after{transform:rotate(45deg) scale(1.35);background:var(--oro)}
+.hito.guerra::after{animation:latido-guerra 2.6s ease-out infinite}
+.hito.guerra:hover::after{background:var(--sangre)}
+.era h2::before{transition:transform .4s ease}
+.era:hover h2::before{transform:rotate(225deg)}
+.autor img{transition:transform .5s ease,box-shadow .5s ease}
+.autor img:hover{transform:scale(1.05) rotate(-3deg);box-shadow:0 0 0 4px var(--carbon),0 0 0 6px var(--oro),0 0 28px rgba(184,146,63,.5)}
+nav ul.abierto{animation:desplegar .25s ease-out}
+
+/* En móvil la línea de tiempo entra desde abajo */
+@media (max-width:760px){
+  .hito.visible,.hito:nth-child(even).visible{animation-name:aparecer}
+}
+
+/* Sin movimiento si el sistema lo pide */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .js .tarjeta:not(.visible),.js .era:not(.visible),.js .hito:not(.visible),
+  .js .autor:not(.visible),.js .cabecera-pagina:not(.visible),.js pre:not(.visible){opacity:1}
+}
+
+/* Historia y secciones vacías */
+.era .periodo{color:var(--ceniza);font-style:italic;font-size:1rem;margin-bottom:.8rem}
+.vacio{color:var(--ceniza);font-style:italic;padding:2rem;border:1px dashed var(--hierro);text-align:center;max-width:none}
